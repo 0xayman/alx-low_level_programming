@@ -1,24 +1,25 @@
 #include "main.h"
-#include "_strlen.c"
 
 /**
- * puts2 - prints very other character
- * @str: string
- * Return: none
+ * puts2 - prints one char out of 2 of a string
+ * followed by a new line
+ * @str: string to print the chars from
  */
-
 void puts2(char *str)
 {
-	int i;
+	int len, i;
 
-	i = 0;
-	while (str[i] != 0)
+	len = 0;
+
+	while (str[len] != '\0')
 	{
-		if ((i % 2) == 0)
-		{
-			_putchar(str[i]);
-		}
-		i++;
+		len++;
 	}
-	_putchar(10);
+
+	for (i = 0; i < len; i += 2)
+	{
+		_putchar(str[i]);
+	}
+
+	_putchar('\n');
 }
