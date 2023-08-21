@@ -1,24 +1,17 @@
 #include "main.h"
-#include "_strlen.c"
+#include <stdio.h>
 
 /**
- * puts2 - prints very other character
- * @str: string
- * Return: none
+ * main - check the code
+ * Return: Always 0.
  */
 
-void puts2(char *str)
+int main(void)
 {
-	int i;
-
-	i = 0;
-	while (str[i] != 0)
-	{
-		if ((i % 2) == 0)
-		{
-			_putchar(str[i]);
-		}
-		i++;
-	}
-	_putchar(10);
+	char s[10] = "My School";
+	
+	printf("%s\n", s);
+	rev_string(s);
+	printf("%s\n", s);
+	return (0);
 }
