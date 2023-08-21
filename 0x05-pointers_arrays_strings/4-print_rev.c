@@ -1,20 +1,21 @@
 #include "main.h"
+#include "2-strlen.c"
 
 /**
- *  _puts - prints a string
- *  @str: the string parameter
- *  Return: none
+ * print_rev - print string in reverse
+ * @s: string to print
+ * Return: none
  */
 
-void _puts(char *str)
+void print_rev(char *s)
 {
 	int i;
 
-	i = 0;
-	while (str[i] != 0)
+	i = _strlen(s);
+	while (i > 0)
 	{
-		_putchar(str[i]);
-		i++;
+		_putchar(s[i - 1]);
+		i--;
 	}
 	_putchar(10);
 }
