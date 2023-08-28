@@ -1,16 +1,16 @@
 #include "main.h"
 
 /**
- *  _strspn - function to return length of string
- *  @s: string to search
- *  @accept: string to compare
+ * _strpbrk - function that searches a string
+ * @s: tring to search
+ * @accept: character to search for
  *
- *  Return: number of bytes
+ * Return: s if found and NULL if not
  */
 
-unsigned int _strspn(char *s, char *accept)
+char *_strpbrk(char *s, char *accept)
 {
-	unsigned int i, j, bytes = 0;
+	unsigned int i, j;
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
@@ -18,14 +18,10 @@ unsigned int _strspn(char *s, char *accept)
 		{
 			if (s[i] == accept[j])
 			{
-				bytes++;
-				break;
-			}
-			if (accept[j + 1] == '\0' && s[i] != accept[j])
-			{
-				return (bytes);
+				s = &s[i];
+				return (s);
 			}
 		}
 	}
-	return (bytes);
+	return (0);
 }
