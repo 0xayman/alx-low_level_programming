@@ -1,25 +1,38 @@
 #include "main.h"
 
 /**
- * _strpbrk - function that searches a string
- * @s: tring to search
- * @accept: character to search for
+ * _strstr - function to find substring
+ * @haystack: string yo search through
+ * @needle: string to compare
  *
- * Return: s if found and NULL if not
+ * Return: substring if found or NULL if not
  */
 
-char *_strpbrk(char *s, char *accept)
+char *_strstr(char *haystack, char *needle)
 {
-	unsigned int i, j;
+	unsigned int i, j, k;
 
-	for (i = 0; s[i] != '\0'; i++)
+	if (needle[0] == '\0')
 	{
-		for (j = 0; accept[j] != '\0'; j++)
+		return (haystack);
+	}
+	for (i = 0; haystack[i] != '\0'; i++)
+	{
+		if (haystack[i] == needle[0])
 		{
-			if (s[i] == accept[j])
+			k = i;
+			for (j = 0; needle[j] != '\0'; j++)
 			{
-				s = &s[i];
-				return (s);
+				if (haystack[k] == needle[j])
+				{
+					k++;
+				}
+				else
+					break;
+			}
+			if (needle[j] == '\0')
+			{
+				return (&haystack[i]);
 			}
 		}
 	}
