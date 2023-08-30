@@ -1,25 +1,27 @@
 #include "main.h"
 
 /**
- * factorial - print factorial of integer
- * @n: integer to print factorial of
- * Return: factorial of n
- * -1 if n is negative
- *  1 if n is 0
+ * _pow_recursion - print x exponent y
+ * @x: the base
+ * @y: the exponent/index
+ *
+ * Return: the value of x exp y
+ * -1 if the exponent is negative
  */
 
-int factorial(int n)
+int _pow_recursion(int x, int y)
 {
-	if (n < 0)
+	if (y < 0)
 	{
 		return (-1);
 	}
-	else if (n == 0 || n == 1)
+	if (x == 0)
+	{
+		return (0);
+	}
+	if (x == 1 || y == 0)
 	{
 		return (1);
 	}
-	else
-	{
-		return (n * factorial(n - 1));
-	}
+	return (x * _pow_recursion(x, y - 1));
 }
