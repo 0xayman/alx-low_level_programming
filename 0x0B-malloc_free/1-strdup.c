@@ -1,5 +1,4 @@
 #include "main.h"
-#include "_strlen.c"
 #include <stdlib.h>
 #include <stdio.h>
 
