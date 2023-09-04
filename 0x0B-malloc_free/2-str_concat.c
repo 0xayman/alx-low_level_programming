@@ -1,6 +1,6 @@
-#include "main.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
 
 /**
  * str_concat - concatenate 2 strings
@@ -9,44 +9,57 @@
  *
  * Return: combination of the 2
  */
-
 char *str_concat(char *s1, char *s2)
 {
-	char *concat;
-	int len1 = 0, len2 = 0, i = 0, j = 0;
+    char *result;
+    int i = 0, j = 0;
+    int len1 = 0, len2 = 0;
+    
+    if (s1 == NULL)
+    {
+        s1 = "";
+    }
+    if (s2 == NULL)
+    {
+        s2 = "";
+    }
+    
+    len1 = strlen(s1);
+    len2 = strlen(s2);
+    result = malloc(sizeof(char) * (len1 + len2 + 1));
+    
+    if (result == NULL)
+    {
+        return (NULL);
+    }
+    
+    for (i = 0; i < len1; i++)
+    {
+        *(result + i) = *(s1 + i);
+    }
+    for (j = len1; j < (len1 + len2); j++)
+    {
+        *(result + j) = *(s2 + j - len1);
+    }
+    return (result);
+}
 
-	if (s1 == NULL)
-	{
-		s1 = "";
-	}
-	if (s2 == NULL)
-	{
-		s2 = "";
-	}
-	while (*(s1 + i))
-	{
-		len1++, i++;
-	}
-	while (*(s2 + j))
-	{
-		len2++, j++;
-	}
+/**
+ * main - check the code for ALX School students.
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+    char *s;
 
-	concat = malloc(sizeof(char) * (len1 + len2 + 1));
-
-	if (concat == NULL)
-	{
-		return (NULL);
-	}
-
-	for (i = 0; i < len1; i++)
-	{
-		*(concat + i) = *(s1 + i);
-	}
-	for (j = 0; j < len2; j++)
-	{
-		*(concat + i) = *(s2 + j);
-		i++;
-	}
-	return (concat);
+    s = str_concat("Betty ", "Holberton");
+    if (s == NULL)
+    {
+        printf("failed\n");
+        return (1);
+    }
+    printf("%s\n", s);
+    free(s);
+    return (0);
 }
