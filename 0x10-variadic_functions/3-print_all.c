@@ -74,7 +74,7 @@ void print_a_float(char *separator, va_list args)
 }
 
 /**
- * print_a_char_ptr - Prints the content of pointer 
+ * print_a_char_ptr - Prints the content of pointer
  * @separator: The character
  * @args:  variadic arguments
  * Return: null
