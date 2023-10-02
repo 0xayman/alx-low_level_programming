@@ -10,36 +10,33 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	if (filename == NULL)
-	{
+	if (!filename)
 		return (0);
-	}
 
 	int file_discriptor = open(filename, O_RDONLY);
 
-	if (file_discriptor == -1)
-	{
+	if (file_discriptor < 0)
 		return (0);
-	}
 
 	char *buffer = malloc(sizeof(char) * letters);
 
-	if (buffer == NULL)
-	{
+	if (!buffer)
 		return (0);
-	}
 
 	ssize_t read_bytes = read(file_discriptor, buffer, letters);
 
-	if (read_bytes == -1)
+	if (read_bytes < 0)
 	{
 		free(buffer);
 		return (0);
 	}
 
+	buffer[read_bytes] = '\0';
+	close(file_discriptor);
+
 	ssize_t write_bytes = write(STDOUT_FILENO, buffer, read_bytes);
 
-	if (write_bytes == -1)
+	if (write_bytes < 0)
 	{
 		free(buffer);
 		return (0);
