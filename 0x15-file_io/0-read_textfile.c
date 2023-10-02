@@ -9,16 +9,16 @@
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	char *buffer;
-	int file_discriptor;
+	int fd;
 	ssize_t read_bytes;
 	ssize_t write_bytes;
 
 	if (!filename)
 		return (0);
 
-	file_discriptor = open(filename, O_RDONLY);
+	fd = open(filename, O_RDONLY);
 
-	if (file_discriptor < 0)
+	if (fd < 0)
 		return (0);
 
 	buffer = malloc(sizeof(char) * letters);
@@ -26,7 +26,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (!buffer)
 		return (0);
 
-	read_bytes = read(file_discriptor, buffer, letters);
+	read_bytes = read(fd, buffer, letters);
 
 	if (read_bytes < 0)
 	{
@@ -35,7 +35,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	}
 
 	buffer[read_bytes] = '\0';
-	close(file_discriptor);
+	close(fd);
 
 	write_bytes = write(STDOUT_FILENO, buffer, read_bytes);
 
