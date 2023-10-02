@@ -8,10 +8,10 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	char *buffer;
 	int fd;
-	ssize_t read_bytes;
-	ssize_t write_bytes;
+	ssize_t rbytes;
+	ssize_t wbytes;
+	char *buffer;
 
 	if (!filename)
 		return (0);
@@ -26,20 +26,20 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (!buffer)
 		return (0);
 
-	read_bytes = read(fd, buffer, letters);
+	rbytes = read(fd, buffer, letters);
 
-	if (read_bytes < 0)
+	if (rbytes < 0)
 	{
 		free(buffer);
 		return (0);
 	}
 
-	buffer[read_bytes] = '\0';
+	buffer[rbytes] = '\0';
 	close(fd);
 
-	write_bytes = write(STDOUT_FILENO, buffer, read_bytes);
+	wbytes = write(STDOUT_FILENO, buffer, rbytes);
 
-	if (write_bytes < 0)
+	if (wbytes < 0)
 	{
 		free(buffer);
 		return (0);
@@ -47,5 +47,5 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	free(buffer);
 
-	return (write_bytes);
+	return (wbytes);
 }
